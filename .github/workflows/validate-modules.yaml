@@ -1,0 +1,44 @@
+name: Validate Terraform Modules
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Validate All Modules
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        module: [vpc, rds, s3-bucket, security-group, iam-role]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.7.0"
+
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive modules/${{ matrix.module }}
+
+      - name: Init module
+        run: terraform init -backend=false
+        working-directory: modules/${{ matrix.module }}
+
+      - name: Validate module
+        run: terraform validate
+        working-directory: modules/${{ matrix.module }}
+
+      - name: Run tflint
+        uses: terraform-linters/setup-tflint@v4
+        with:
+          tflint_version: latest
+
+      - name: tflint
+        run: |
+          tflint --init
+          tflint
+        working-directory: modules/${{ matrix.module }}
