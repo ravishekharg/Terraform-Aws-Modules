@@ -1,8 +1,4 @@
-```markdown
 # Terraform AWS Modules
-
-![Validate](https://github.com/ravishekharg/terraform-aws-modules/actions/workflows/validate-modules.yaml/badge.svg)
-![Terraform](https://img.shields.io/badge/Terraform-1.7-purple?logo=terraform)
 
 Reusable, production-grade Terraform modules for AWS infrastructure.
 Each module is independently validated, formatted, and linted via CI.
