@@ -10,11 +10,11 @@ module "mysql" {
   username      = "admin"
   password      = "change-me-use-secrets-manager"
 
-  instance_class          = "db.t3.micro"
-  multi_az                = false
-  backup_retention_days   = 7
-  deletion_protection     = false
-  skip_final_snapshot     = true
+  instance_class        = "db.t3.micro"
+  multi_az              = false
+  backup_retention_days = 7
+  deletion_protection   = false
+  skip_final_snapshot   = true
 
   tags = { Environment = "dev", ManagedBy = "terraform" }
 }

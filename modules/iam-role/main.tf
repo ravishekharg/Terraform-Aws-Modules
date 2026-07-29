@@ -40,7 +40,7 @@ resource "aws_iam_role" "main" {
   name = var.role_name
   assume_role_policy = local.is_irsa ? (
     data.aws_iam_policy_document.trust_irsa[0].json
-  ) : (
+    ) : (
     data.aws_iam_policy_document.trust_ec2[0].json
   )
   tags = var.tags

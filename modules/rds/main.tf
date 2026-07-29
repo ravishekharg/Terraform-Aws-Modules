@@ -1,7 +1,7 @@
 resource "aws_db_subnet_group" "main" {
   name       = "${var.identifier}-subnet-group"
   subnet_ids = var.subnet_ids
-  tags = merge(var.tags, { Name = "${var.identifier}-subnet-group" })
+  tags       = merge(var.tags, { Name = "${var.identifier}-subnet-group" })
 }
 
 resource "aws_security_group" "rds" {
@@ -48,10 +48,10 @@ resource "aws_db_instance" "main" {
   backup_window           = "03:00-04:00"
   maintenance_window      = "Mon:04:00-Mon:05:00"
 
-  multi_az               = var.multi_az
-  publicly_accessible    = false
-  deletion_protection    = var.deletion_protection
-  skip_final_snapshot    = var.skip_final_snapshot
+  multi_az                  = var.multi_az
+  publicly_accessible       = false
+  deletion_protection       = var.deletion_protection
+  skip_final_snapshot       = var.skip_final_snapshot
   final_snapshot_identifier = var.skip_final_snapshot ? null : "${var.identifier}-final-snapshot"
 
   performance_insights_enabled = true
