@@ -10,5 +10,11 @@ override.tf.json
 .terraformrc
 terraform.rc
 
+# Variable files may contain sensitive values; keep examples explicit instead
+*.tfvars
+*.tfvars.json
+!*.tfvars.example
+!*.tfvars.json.example
+
 # Optional
 *.log
